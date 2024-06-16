@@ -589,7 +589,7 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
             <label>RUT del Personal Asociado:</label>
             <input type="text" name="rut_PA" value={rut} onChange={(e) => setselectedEdit({ ...selectedEdit, rut_PA: e.target.value })} disabled/>
             <div className="button-container">
-              <button type="button" onClick={() => handleEditar (editEventId)}>Guardar</button>
+              <button type="button" onClick={() => handleEditar()}>Guardar</button>
               <button type="button" onClick={handleEditClose}>Cancelar</button>
             </div>
           </form>
