@@ -54,10 +54,6 @@
     background-color: hsl(207, 92%, 44%);
   }
 
-  .event-form button {
-    margin-right: 10px; /* Ajusta el valor según lo que prefieras */
-  }
-  
   .event-form button:last-child {
     margin-right: 0; /* Elimina el margen derecho del último botón */
   }
@@ -119,10 +115,4 @@
     width: 80px;
   }
 
-  .button-container {
-    display: flex;
-    justify-content: 50%;
-    width: 100%;
-    align-items: center;
-  }
   

@@ -57,34 +57,10 @@ function Register({ onRegister, onError }) {
   return (
     <div className='container'>
       <h2>Registrarse</h2>
-      <label>Email:</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <label>Contraseña:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <label>Nombre:</label>
-      <input
-        type="text"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-      />
-      <br />
-      <label>Apellido:</label>
-      <input
-        type="text"
-        value={apellido}
-        onChange={(e) => setApellido(e.target.value)}
-      />
-      <br />
+      <label>Email:<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} /></label>
+      <label>Contraseña:<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
+      <label>Nombre:<input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}/></label>
+      <label>Apellido:<input type="text" value={apellido} onChange={(e) => setApellido(e.target.value)}/></label>
       <label>Tipo:</label>
       <select
         value={tipo}

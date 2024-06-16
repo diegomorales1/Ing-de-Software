@@ -9,7 +9,7 @@ const Solicitud = require('./Models/solicitudes');
 
 
 router.get('/getPaciente/:rut', async (req, res) => {
-  const rut = req.params.rut;
+  const rut = req.params.rut.toString();
 
   try {
       const paciente = await Paciente.findOne({ rut: rut });
@@ -57,7 +57,7 @@ router.put('/updateSolicitud/:id', async (req, res) => {
 router.post('/register', async (req, res) => {
     try {
       console.log('Recibiendo solicitud de registro:', req.body);
-      const existingUser = await User.findOne({ username: req.body.email });
+      const existingUser = await User.findOne({ username: req.body.email.toString() });
   
       if (existingUser) {
         return res.status(400).json({ message: 'El usuario ya está registrado.' });
@@ -86,7 +86,7 @@ router.post('/register', async (req, res) => {
 router.post('/register/paciente', async (req, res) => {
   try {
       console.log('Recibiendo solicitud de registro de paciente:', req.body);
-      const existingPaciente = await Paciente.findOne({ username: req.body.email });
+      const existingPaciente = await Paciente.findOne({ username: req.body.email.toString()});
 
       if (existingPaciente) {
           return res.status(400).json({ message: 'El paciente ya está registrado.' });
@@ -94,7 +94,7 @@ router.post('/register/paciente', async (req, res) => {
 
       const newPaciente = new Paciente({
           username: req.body.email,
-          password: req.body.password, // Recuerda manejar el hashing de la contraseña
+          password: req.body.password, 
           nombre: req.body.nombre,
           apellido: req.body.apellido,
           tipo: 'paciente', // El tipo es paciente
@@ -119,11 +119,11 @@ router.post('/register/paciente', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     // Busca en la colección de usuarios
-    const user = await User.findOne({ rut: req.body.rut });
+    const user = await User.findOne({ rut: req.body.rut.toString() });
     
     // Si no se encuentra en la colección de usuarios, busca en la colección de pacientes
     if (!user) {
-      const patient = await Paciente.findOne({ rut: req.body.rut });
+      const patient = await Paciente.findOne({ rut: req.body.rut.toString() });
       if (patient && patient.password === req.body.password) {
         return res.status(200).json({
           message: 'Inicio de sesión exitoso.',

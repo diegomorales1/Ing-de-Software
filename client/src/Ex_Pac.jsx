@@ -200,22 +200,8 @@ function Ex_Pac({ userDetails }) {
         <div className="form-container">
           <h3>Agendar hora</h3>
           <form>
-            <label>Inicio:</label>
-            <input
-              type="datetime-local"
-              name="inicio_fecha"
-              value={newEvent.inicio_fecha}
-              onChange={handleInputChange}
-            />
-            
-            <label>Fin:</label>
-            <input
-              type="datetime-local"
-              name="final_fecha"
-              value={newEvent.final_fecha}
-              onChange={handleInputChange}
-            />
-
+            <label>Inicio:<input type="datetime-local" name="inicio_fecha" value={newEvent.inicio_fecha} onChange={handleInputChange}/></label>
+            <label>Fin:<input type="datetime-local" name="final_fecha" value={newEvent.final_fecha} onChange={handleInputChange} /></label>
             <label>Tipo de Examen:</label>
             <select
               name="tipoExamen"

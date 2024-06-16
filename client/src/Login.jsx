@@ -39,19 +39,9 @@ function Login({ onLogin, onError }) {
 
   return (
     <div className="container">
-      <h2>Iniciar Sesión</h2>
-      <label>Rut:</label>
-      <input
-        type="rut"
-        value={rut}
-        onChange={(e) => setRut(e.target.value)}
-      />
-      <label>Contraseña:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <h2>Iniciar Sesión </h2>
+      <label> Rut: <input type="text" value={rut} onChange={(e) => setRut(e.target.value)} /></label>
+      <label> Contraseña: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
       <button onClick={handleLogin}>Iniciar Sesión</button>
     </div>
   );

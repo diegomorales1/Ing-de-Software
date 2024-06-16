@@ -151,7 +151,7 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
   };
 
   const handleEditar = async () => {
-    console.log("VOY A ELIMINAR >:C: ", editEventId);
+    console.log("VOY A ELIMINAR", editEventId);
     try {
       const isEditEvent = selectedEdit || selectedEdit.id;
   
@@ -161,14 +161,14 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
       }
   
       // Obtener el RUT del personal administrativo en este punto
-      const rutPA = rut; // Reemplaza esto con tu lógica real
+      const rutPA = rut;
   
-      // Eliminar el evento existente
+      //Eliminar el evento existente
       await fetch(`http://localhost:5000/api/deleteEvent/${editEventId}`, {
         method: 'DELETE',
       });
   
-      // Crear un nuevo evento con los datos editados
+      //Crear un nuevo evento con los datos editados
       const newEventToSave = {
         nombre_paciente: selectedEdit.nombre_paciente,
         inicio_fecha: selectedEdit.inicio_fecha,
@@ -497,7 +497,7 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
         </div>
       )}
       <div>
-        <label>Filtrar por Tipo de Examen:</label>
+        <label>  Filtrar por Tipo de Examen: </label>
         <select value={tipoExamenFilter} onChange={handleFilterChange}>
           <option value="">Todos</option>
           <option value="Radiografía">Radiografía</option>
@@ -525,20 +525,14 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
       <button onClick={handleAddEventClick}>Agregar Evento</button>
       {showEventForm && (
         <div className={`event-modal ${showEventForm ? 'show' : ''}`}>
-          <label>Añadir Hora al sistema:</label>
+          <label> Añadir Hora al sistema:</label>
           <form className="event-form">
-            <label>Titulo:</label>
-            <input type="text" name="nombre_paciente" value={selectedEvent?.nombre_paciente || newEvent.nombre_paciente} onChange={(e) => setSelectedEvent({ ...selectedEvent, nombre_paciente: e.target.value })} />
-            <label>Inicio:</label>
-            <input type="datetime-local" name="inicio_fecha" value={selectedEvent?.inicio_fecha || newEvent.inicio_fecha} onChange={(e) => setSelectedEvent({ ...selectedEvent, inicio_fecha: e.target.value })} />
-            <label>Fin:</label>
-            <input type="datetime-local" name="final_fecha" value={selectedEvent?.final_fecha || newEvent.final_fecha} onChange={(e) => setSelectedEvent({ ...selectedEvent, final_fecha: e.target.value })} />
-            <label>Nombre:</label>
-            <input type="text" name="nombre_paciente_desc" value={selectedEvent?.description?.nombre_paciente_desc || newEvent.description.nombre_paciente_desc} onChange={(e) => setSelectedEvent({ ...selectedEvent, description: { ...selectedEvent.description, nombre_paciente_desc: e.target.value } })} />
-            <label>Teléfono:</label>
-            <input type="text" name="telefono" value={selectedEvent?.description?.telefono || newEvent.description.telefono} onChange={(e) => setSelectedEvent({ ...selectedEvent, description: { ...selectedEvent.description, telefono: e.target.value } })} />
-            <label>RUT:</label>
-            <input type="text" name="rut_paciente" value={selectedEvent?.description?.rut_paciente || newEvent.description.rut_paciente} onChange={(e) => setSelectedEvent({ ...selectedEvent, description: { ...selectedEvent.description, rut_paciente: e.target.value } })} />
+            <label>Titulo: <input type="text" name="nombre_paciente" value={selectedEvent?.nombre_paciente || newEvent.nombre_paciente} onChange={(e) => setSelectedEvent({ ...selectedEvent, nombre_paciente: e.target.value })} /> </label>
+            <label>Inicio: <input type="datetime-local" name="inicio_fecha" value={selectedEvent?.inicio_fecha || newEvent.inicio_fecha} onChange={(e) => setSelectedEvent({ ...selectedEvent, inicio_fecha: e.target.value })} /> </label>
+            <label>Fin: <input type="datetime-local" name="final_fecha" value={selectedEvent?.final_fecha || newEvent.final_fecha} onChange={(e) => setSelectedEvent({ ...selectedEvent, final_fecha: e.target.value })} /> </label>
+            <label>Nombre: <input type="text" name="nombre_paciente_desc" value={selectedEvent?.description?.nombre_paciente_desc || newEvent.description.nombre_paciente_desc} onChange={(e) => setSelectedEvent({ ...selectedEvent, description: { ...selectedEvent.description, nombre_paciente_desc: e.target.value } })} /> </label>
+            <label>Teléfono: <input type="text" name="telefono" value={selectedEvent?.description?.telefono || newEvent.description.telefono} onChange={(e) => setSelectedEvent({ ...selectedEvent, description: { ...selectedEvent.description, telefono: e.target.value } })} /> </label>
+            <label>RUT:<input type="text" name="rut_paciente" value={selectedEvent?.description?.rut_paciente || newEvent.description.rut_paciente} onChange={(e) => setSelectedEvent({ ...selectedEvent, description: { ...selectedEvent.description, rut_paciente: e.target.value } })} /></label>
             <label>Tipo de Examen:</label>
             <select
               name="tipoExamen"
@@ -563,18 +557,12 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
         <div className={`event-modal ${showEdicion ? 'show' : ''}`}>
           <label>Formulario de edicion:</label>
           <form className="event-form">
-            <label>Titulo:</label>
-            <input type="text" name="nombre_paciente" value={selectedEdit?.nombre_paciente || newEvent.nombre_paciente} onChange={(e) => setselectedEdit({ ...selectedEdit, nombre_paciente: e.target.value })} />
-            <label>Inicio:</label>
-            <input type="datetime-local" name="inicio_fecha" value={selectedEdit?.inicio_fecha || newEvent.inicio_fecha} onChange={(e) => setselectedEdit({ ...selectedEdit, inicio_fecha: e.target.value })} />
-            <label>Fin:</label>
-            <input type="datetime-local" name="final_fecha" value={selectedEdit?.final_fecha || newEvent.final_fecha} onChange={(e) => setselectedEdit({ ...selectedEdit, final_fecha: e.target.value })} />
-            <label>Nombre:</label>
-            <input type="text" name="nombre_paciente_desc" value={selectedEdit?.description?.nombre_paciente_desc || newEvent.description.nombre_paciente_desc} onChange={(e) => setselectedEdit({ ...selectedEdit, description: { ...selectedEdit.description, nombre_paciente_desc: e.target.value } })} />
-            <label>Teléfono:</label>
-            <input type="text" name="telefono" value={selectedEdit?.description?.telefono || newEvent.description.telefono} onChange={(e) => setselectedEdit({ ...selectedEdit, description: { ...selectedEdit.description, telefono: e.target.value } })} />
-            <label>RUT:</label>
-            <input type="text" name="rut_paciente" value={selectedEdit?.description?.rut_paciente || newEvent.description.rut_paciente} onChange={(e) => setselectedEdit({ ...selectedEdit, description: { ...selectedEdit.description, rut_paciente: e.target.value } })} />
+            <label>Titulo <input type="text" name="nombre_paciente" value={selectedEdit?.nombre_paciente || newEvent.nombre_paciente} onChange={(e) => setselectedEdit({ ...selectedEdit, nombre_paciente: e.target.value })} />:</label>
+            <label>Inicio:<input type="datetime-local" name="inicio_fecha" value={selectedEdit?.inicio_fecha || newEvent.inicio_fecha} onChange={(e) => setselectedEdit({ ...selectedEdit, inicio_fecha: e.target.value })} /></label>
+            <label>Fin:<input type="datetime-local" name="final_fecha" value={selectedEdit?.final_fecha || newEvent.final_fecha} onChange={(e) => setselectedEdit({ ...selectedEdit, final_fecha: e.target.value })} /></label>
+            <label>Nombre:<input type="text" name="nombre_paciente_desc" value={selectedEdit?.description?.nombre_paciente_desc || newEvent.description.nombre_paciente_desc} onChange={(e) => setselectedEdit({ ...selectedEdit, description: { ...selectedEdit.description, nombre_paciente_desc: e.target.value } })} /></label>
+            <label>Teléfono:<input type="text" name="telefono" value={selectedEdit?.description?.telefono || newEvent.description.telefono} onChange={(e) => setselectedEdit({ ...selectedEdit, description: { ...selectedEdit.description, telefono: e.target.value } })} /></label>
+            <label>RUT:<input type="text" name="rut_paciente" value={selectedEdit?.description?.rut_paciente || newEvent.description.rut_paciente} onChange={(e) => setselectedEdit({ ...selectedEdit, description: { ...selectedEdit.description, rut_paciente: e.target.value } })} /></label>
             <label>Tipo de Examen:</label>
             <select
               name="tipoExamen"
@@ -586,7 +574,7 @@ function Calendar({ nombre, apellido, rut, tipo ,email }) {
               <option value="Ecografía">Ecografía</option>
               <option value="Resonancia Magnética">Resonancia Magnética</option>
             </select>
-            <label>RUT del Personal Asociado:</label>
+            <label><input type="text" />RUT del Personal Asociado:</label>
             <input type="text" name="rut_PA" value={rut} onChange={(e) => setselectedEdit({ ...selectedEdit, rut_PA: e.target.value })} disabled/>
             <div className="button-container">
               <button type="button" onClick={() => handleEditar()}>Guardar</button>
